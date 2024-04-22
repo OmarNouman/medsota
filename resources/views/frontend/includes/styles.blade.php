@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="{{asset('assets/css/frontend/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/animate.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/magnific-popup.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/fontawesome-all.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/themify-icons.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/meanmenu.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/slick.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/main.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/frontend/responsive.css')}}">
