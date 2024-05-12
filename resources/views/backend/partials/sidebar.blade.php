@@ -85,6 +85,21 @@
                 <li class="app-sidebar__heading">Settings</li>
                 <li>
                     <a href="#">
+                        <i class="metismenu-icon pe-7s-albums"></i>
+                        Slider
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ route('sliders.index') }}">
+                                <i class="metismenu-icon"> </i>
+                                Slider Settings
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-settings"></i>
                         Settings
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>

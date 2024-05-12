@@ -13,10 +13,10 @@
             <div class="card-body">
                 <div class="row pb-3">
                     <div class="col-lg-11 align-self-center pt-2">
-                        <h5 class="card-title"><strong>Categories</strong></h5>
+                        <h5 class="card-title"><strong>Products</strong></h5>
                     </div>
                     <div class="col-lg-1 align-self-center">
-                        <a class="btn btn-primary align-middle" href="{{ route('categories.create') }}">Add Category</a>
+                        <a class="btn btn-primary align-middle" href="{{ route('products.create') }}">Add Product</a>
                     </div>
                 </div>
                 <table class="mb-0 table table-striped">
@@ -28,16 +28,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $index => $category)
+                        @foreach ($products as $index => $product)
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
-                                <td>{{ $category->name }}</td>
+                                <td>{{ $product->name }}</td>
                                 <td>
                                     <div class="row">
-                                        <a href="{{ route('categories.edit', $category->id) }}"
+                                        <a href="{{ route('products.edit', $product->id) }}"
                                             class="btn btn-info pe-7s-pen m-1">
                                         </a>
-                                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                             class="delete-form">
                                             @method('DELETE')
                                             @csrf
@@ -51,7 +51,7 @@
                 </table>
             </div>
         </div>
-        {{ $categories->links('pagination::bootstrap-4') }}
+        {{ $products->links('pagination::bootstrap-4') }}
     </div>
 @endsection
 @push('scripts')

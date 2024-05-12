@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
+use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    private $dir = 'frontend.products.';
+    private $dir = 'backend.products.';
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +32,8 @@ class ProductController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view($this->dir . 'create', compact('products'));
+        $categories = Category::all();
+        return view($this->dir . 'create', compact('products', 'categories'));
     }
 
     /**
@@ -40,20 +44,12 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Product::create($request->validated());
+        $product = Product::create($request->validated());
+        foreach ($request->validated()['image_url'] as $image) {
+            $product->images()->create(['url'=>$image]);
+        }
         return redirect()->route('products.index')->with('success', 'Product Created Successfully!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    // public function show(Product $product)
-    // {
-    //     //
-    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -64,7 +60,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $products = Product::all();
-        return view($this->dir . 'create', compact('products', 'product'));
+        $categories = Category::all();
+        return view($this->dir . 'create', compact('products', 'product', 'categories'));
     }
 
     /**
@@ -77,7 +74,7 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $product->update($request->validated());
-        return redirect()->route('categories.index')->with('success', 'Product Updated Successfully!');
+        return redirect()->route('products.index')->with('success', 'Product Updated Successfully!');
     }
 
     /**
@@ -88,7 +85,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        foreach($product->images->all() as $image){
+            Storage::delete($image->url);
+        }
         $product->delete();
-        return redirect()->route('categories.index')->with('success', 'Product Deleted Successfully!');
+        return redirect()->route('products.index')->with('success', 'Product Deleted Successfully!');
     }
 }
